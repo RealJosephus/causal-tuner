@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "causal-tuner"
+version = "0.1.0"
+description = "Single-device decoder training with LoRA and checkpoint tools"
+requires-python = ">=3.11"
+dependencies = [
+    "torch>=2.8,<3",
+    "triton>=3.4,<4; sys_platform == 'linux'",
+    "safetensors>=0.5,<1",
+    "huggingface-hub>=0.36,<3",
+    "datasets>=5.1,<5.2",
+    "ijson>=3",
+    "tokenizers>=0.21,<1",
+    "jinja2>=3.1",
+    "numpy>=1.26",
+    "psutil>=6",
+    "bitsandbytes>=0.45,<1",
+    "wandb>=0.19,<1",
+]
+
+[project.scripts]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+causal_tuner = ["arguments.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

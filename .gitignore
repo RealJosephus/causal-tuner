@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.venv/
+*.egg-info/
+build/
+dist/
+causal-tuner-output/
+output-*/
+wandb/
+
+# Local maintenance files.
+/.local/
+
+# Local development scripts.
+/tests/benchmarks/

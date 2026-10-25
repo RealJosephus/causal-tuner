@@ -1,0 +1,423 @@
+{
+  "activation_offload": {
+    "default": "auto",
+    "type": "str",
+    "choices": [
+      "auto",
+      "none",
+      "cpu"
+    ],
+    "help": "Auto creates bounded CPU storage for checkpointed layers; none disables offload, cpu enables it explicitly."
+  },
+  "adam_beta1": {
+    "default": 0.9,
+    "type": "float"
+  },
+  "adam_beta2": {
+    "default": 0.999,
+    "type": "float"
+  },
+  "adam_epsilon": {
+    "default": 1e-08,
+    "type": "float"
+  },
+  "assistant_only_loss": {
+    "default": false,
+    "type": "bool"
+  },
+  "attn_mechanism": {
+    "default": "flash_attention_2",
+    "type": "str",
+    "choices": [
+      "flash_attention_2",
+      "vanilla"
+    ]
+  },
+  "checkpoint_host_budget_gib": {
+    "default": 56.0,
+    "type": "float"
+  },
+  "hub_dataset_repo_id": {
+    "default": null,
+    "type": "str",
+    "help": "Prepare directly into this Hugging Face dataset repository using datasets.push_to_hub."
+  },
+  "hub_model_repo_id": {
+    "default": null,
+    "type": "str",
+    "help": "Stream complete checkpoints to this model repository as Git commits and resume its latest version."
+  },
+  "hub_private": {
+    "default": false,
+    "type": "bool",
+    "help": "Visibility applied to the output Hub repository before uploading content."
+  },
+  "hub_gated": {
+    "default": "manual",
+    "type": "str",
+    "choices": ["manual", "auto", "off"],
+    "help": "Access approval applied to the output Hub repository before uploading content."
+  },
+  "cut_chunk_size": {
+    "default": 0,
+    "type": "int",
+    "help": "Token rows per cut-loss call; 0 passes all supervised rows to its internal tiler."
+  },
+  "data_buffer_budget_mib": {
+    "default": 512,
+    "type": "int",
+    "help": "Total data-stage allowance divided across tokenization, shuffle, packing and prefetch."
+  },
+  "dataset_config_name": {
+    "default": null,
+    "type": "str"
+  },
+  "dataset_format": {
+    "default": "raw",
+    "type": "str",
+    "choices": [
+      "raw",
+      "prepared"
+    ]
+  },
+  "dataset_name": {
+    "default": null,
+    "type": "str",
+    "required": true
+  },
+  "dataset_revision": {
+    "default": null,
+    "type": "str"
+  },
+  "dataset_split": {
+    "default": "train",
+    "type": "str"
+  },
+  "dataset_streaming": {
+    "default": false,
+    "type": "bool"
+  },
+  "dataset_text_field": {
+    "default": "text",
+    "type": "str"
+  },
+  "dtype": {
+    "default": "bfloat16",
+    "type": "str",
+    "choices": [
+      "bfloat16",
+      "float32"
+    ]
+  },
+  "endprompt_context_loss_weight": {
+    "default": 1.0,
+    "type": "float"
+  },
+  "endprompt_enable": {
+    "default": false,
+    "type": "bool"
+  },
+  "endprompt_logical_length": {
+    "default": null,
+    "type": "int"
+  },
+  "endprompt_logical_length_min": {
+    "default": null,
+    "type": "int"
+  },
+  "endprompt_prompt_loss_weight": {
+    "default": 0.1,
+    "type": "float"
+  },
+  "endprompt_prompts": {
+    "default": "This is the end of text, please pay attention here",
+    "type": "str"
+  },
+  "frozen_parameters": {
+    "default": null,
+    "type": "str"
+  },
+  "gpu_memory_budget_gib": {
+    "default": 0.0,
+    "type": "float",
+    "help": "Optional GPU memory limit in GiB. Zero lets CUDA manage available GPU memory."
+  },
+  "gradient_accumulation_steps": {
+    "default": 1,
+    "type": "int"
+  },
+  "gradient_checkpointing": {
+    "default": "auto",
+    "type": "str",
+    "choices": [
+      "auto",
+      "enabled",
+      "disabled"
+    ],
+    "help": "Auto selects an activation policy from the model configuration and execution pack; enabled always checkpoints, disabled retains activations."
+  },
+  "remat_inner_checkpoint": {
+    "default": true,
+    "type": "bool",
+    "help": "Retain per-layer checkpoints inside remat groups. Disabling this avoids nested replay but retains more activations during each group's backward; groups of size 1 are unchanged."
+  },
+  "hf_retry_initial_delay": {
+    "default": 1.0,
+    "type": "float"
+  },
+  "hf_retry_max_delay": {
+    "default": 60.0,
+    "type": "float"
+  },
+  "host_memory_budget_gib": {
+    "default": 72.0,
+    "type": "float"
+  },
+  "last_assistant_only_loss": {
+    "default": false,
+    "type": "bool"
+  },
+  "learning_rate": {
+    "default": 2e-05,
+    "type": "float"
+  },
+  "learning_rate_end": {
+    "default": 0.0,
+    "type": "float",
+    "help": "Absolute final rate for linear/cosine decay; ignored by constant."
+  },
+  "logging_steps": {
+    "default": 10,
+    "type": "int"
+  },
+  "lora": {
+    "default": true,
+    "type": "bool"
+  },
+  "lora_rank": {
+    "default": 256,
+    "type": "int"
+  },
+  "lora_save_adapter_only": {
+    "default": null,
+    "type": "bool"
+  },
+  "lora_train_embed": {
+    "default": null,
+    "type": "bool"
+  },
+  "lora_train_embed_and_lm_head": {
+    "default": false,
+    "type": "bool"
+  },
+  "lora_train_lm_head": {
+    "default": null,
+    "type": "bool"
+  },
+  "loss_implementation": {
+    "default": "fused",
+    "type": "str",
+    "choices": [
+      "fused",
+      "cut"
+    ]
+  },
+  "loss_token_budget": {
+    "default": 128,
+    "type": "int",
+    "help": "Maximum projected token rows per fused-loss tile; the cut backend uses its own tiling."
+  },
+  "maskgit_probability": {
+    "default": 0.0,
+    "type": "float"
+  },
+  "max_grad_norm": {
+    "default": 1.0,
+    "type": "float"
+  },
+  "max_sequence_length": {
+    "default": 4096,
+    "type": "int"
+  },
+  "max_steps": {
+    "default": -1,
+    "type": "int"
+  },
+  "mlp_chunk_size": {
+    "default": null,
+    "type": "int",
+    "help": "Flattened token rows per MLP tile; unset selects from each actual microbatch. Explicit 0 disables outer tiling."
+  },
+  "mlp_cache_budget_gib": {
+    "default": null,
+    "type": "float",
+    "help": "Saved LoRA MLP intermediates; unset uses the automatic execution policy, 0 disables caching. Positive budgets override the policy on resident layers."
+  },
+  "num_train_epochs": {
+    "default": 1.0,
+    "type": "float",
+    "help": "Epoch horizon, ignored when max_steps is positive; epoch-driven streaming requires an integer."
+  },
+  "output_dir": {
+    "default": "causal-tuner-output",
+    "type": "str"
+  },
+  "packing": {
+    "default": false,
+    "type": "bool"
+  },
+  "packing_batch_size": {
+    "default": 1000,
+    "type": "int"
+  },
+  "param_dtype": {
+    "default": "bfloat16",
+    "type": "str",
+    "choices": [
+      "bfloat16",
+      "float32"
+    ],
+    "help": "Storage dtype of frozen base weights; precision_recipe controls trainable parameter storage."
+  },
+  "pinned_memory_budget_gib": {
+    "default": 8.0,
+    "type": "float"
+  },
+  "precision_recipe": {
+    "default": "stable",
+    "type": "str",
+    "choices": [
+      "stable",
+      "reference_bf16"
+    ],
+    "help": "Stable uses FP32 trainable weights, gradients and Adam states; reference_bf16 stores them in BF16."
+  },
+  "prefetch_batches": {
+    "default": 1,
+    "type": "int",
+    "help": "Bounded synchronous CPU batch lookahead; 0 disables lookahead."
+  },
+  "processor_repo_id": {
+    "default": null,
+    "type": "str"
+  },
+  "processor_revision": {
+    "default": null,
+    "type": "str",
+    "help": "Revision for an explicitly selected processor; the default processor reuses the model commit."
+  },
+  "projection_chunk_size": {
+    "default": 0,
+    "type": "int",
+    "help": "Flattened token rows per projection tile; 0 uses an untiled base GEMM with bounded low-rank workspaces."
+  },
+  "quantization": {
+    "default": "none",
+    "type": "str",
+    "choices": [
+      "none",
+      "nf4"
+    ],
+    "help": "NF4 applies only to frozen decoder projection weights under LoRA."
+  },
+  "remat_group_size": {
+    "default": 1,
+    "type": "int",
+    "help": "Layers per outer checkpoint group; inner layer checkpoints remain active."
+  },
+  "repo_id": {
+    "default": null,
+    "type": "str",
+    "required": true
+  },
+  "revision": {
+    "default": null,
+    "type": "str"
+  },
+  "save_optimizer_state": {
+    "default": false,
+    "type": "bool",
+    "help": "Include Adam state for exact continuation after interruption."
+  },
+  "save_steps": {
+    "default": 0,
+    "type": "int"
+  },
+  "save_total_limit": {
+    "default": 1,
+    "type": "int",
+    "help": "Number of completed checkpoints to keep; 0 retains all."
+  },
+  "scheduler": {
+    "default": "cosine",
+    "type": "str",
+    "choices": [
+      "cosine",
+      "linear",
+      "constant"
+    ]
+  },
+  "seed": {
+    "default": 42,
+    "type": "int"
+  },
+  "shuffle": {
+    "default": true,
+    "type": "bool"
+  },
+  "streaming_shuffle_buffer": {
+    "default": 10000,
+    "type": "int"
+  },
+  "token": {
+    "default": null,
+    "type": "str"
+  },
+  "total_batch_size": {
+    "default": 1,
+    "type": "int",
+    "help": "Input records or stored packed rows per logical batch; gradient_accumulation_steps combines logical batches per optimizer update. GPU packs are controlled by microbatch_token_budget."
+  },
+  "track_memory": {
+    "default": false,
+    "type": "bool"
+  },
+  "use_wandb": {
+    "default": false,
+    "type": "bool",
+    "help": "Log training metrics to W&B and resume the run recorded in the checkpoint."
+  },
+  "wandb_entity": {
+    "default": null,
+    "type": "str",
+    "help": "W&B user or team; defaults to the SDK account setting, or the checkpoint's entity on resume."
+  },
+  "wandb_project": {
+    "default": "causal-tuner",
+    "type": "str"
+  },
+  "wandb_run_name": {
+    "default": null,
+    "type": "str",
+    "help": "Display name for a new W&B run; the checkpoint stores its identity for continuation."
+  },
+  "warmup_steps": {
+    "default": 0,
+    "type": "int",
+    "help": "Warmup optimizer updates, independent of streaming record counts. Must fit a known update horizon; a one-update run skips warmup."
+  },
+  "weight_decay": {
+    "default": 0.0,
+    "type": "float"
+  },
+  "attention_cache_budget_gib": {
+    "default": null,
+    "type": "float",
+    "help": "Saved FA2 forward outputs in trailing checkpointed layers; unset uses the automatic execution policy, 0 disables caching. Requires single-layer FA2 checkpointing."
+  },
+  "microbatch_token_budget": {
+    "default": 12288,
+    "type": "int",
+    "help": "Target tokens per GPU pack within each optimizer update. Compatible short packs can combine across accumulated input batches. Independent spans stay intact; oversized spans run alone. 0 preserves input grouping and optimizer update membership is unchanged."
+  }
+}
