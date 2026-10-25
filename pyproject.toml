@@ -23,6 +23,7 @@ dependencies = [
 ]
 
 [project.scripts]
+causal-tune-prepare = "causal_tuner.prepare:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
