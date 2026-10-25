@@ -26,6 +26,7 @@ dependencies = [
 causal-tune = "causal_tuner.train:main"
 causal-tune-prepare = "causal_tuner.prepare:main"
 causal-tune-export = "causal_tuner.export:main"
+causal-tune-merge = "causal_tuner.merge:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
